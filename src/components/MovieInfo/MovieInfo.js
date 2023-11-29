@@ -1,6 +1,6 @@
 import { AdditionalInformation } from 'components/AdditionalInformation/AdditionalInformation';
 import { ContainerInfo, ContainerMovieInfo, FotoMovieInfo, Genres, GenresItem, GenresList, Overview, OverviewSpan, TitleMovieInfo, Userscore, UserscoreSpan } from './MovieInfo.styled';
-import { Link } from 'react-router-dom';
+
 
 
 const ImgBaseURL = "https://image.tmdb.org/t/p/w500";

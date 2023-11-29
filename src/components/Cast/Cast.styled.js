@@ -10,7 +10,6 @@ export const ListCast = styled.ul`
 `
 export const StyledCastItem = styled.div`
   width: 250px;
-  /* margin: 16px; */
   text-align: center;
    `
 

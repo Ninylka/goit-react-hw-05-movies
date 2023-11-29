@@ -11,9 +11,7 @@ export default function HomePage() {
   const location = useLocation();
   
   useEffect(() => {
-    // if(!movies === ''){
-    //   return
-    // }
+  
     const fetchTrendingMovies = async () => {
       try {
         const trendingMovies = await getTrendingMovies();
