@@ -3,7 +3,7 @@ import { CastItem } from "./CastItem";
 import { ListCast, NoActorsText } from "./Cast.styled";
 
 export const CastList = ({cast}) => {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading] = useState(false);
     const ImgBaseURL = "https://image.tmdb.org/t/p/w500";
    
     return (
