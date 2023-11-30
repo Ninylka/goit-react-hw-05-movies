@@ -41,4 +41,5 @@ export const NoActorsText = styled.p`
 font-family: 'roboto';
 font-weight: 600;
 font-size: 20px;
+padding-left: 12px;
 `

@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { getMovieReviews } from "api";
-import { Author, AuthorSpan, ReviewsItem, RewiewContent } from "./Reviews.styled";
+import { Author, AuthorSpan, NoReviews, ReviewsItem, RewiewContent } from "./Reviews.styled";
+import { Loader } from "components/Loader";
 
 
 
-export const Reviews =  () => {
+ const Reviews =  () => {
 
-    const [reviews, setReviews] = useState(null);
+    const [reviews, setReviews] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const { movieId } = useParams();
-    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if (!movieId) {
-            return;
-          }
+
+        setIsLoading(true);
         async function getReviews() {
           try {
             const newReviews = await getMovieReviews(movieId);
@@ -32,10 +32,8 @@ export const Reviews =  () => {
 
 return (
   <>
-{isLoading ? (
-        <p>Loading...</p>
-        
-      ) : reviews && reviews.length > 0 ? (
+   {isLoading && <Loader/> }
+     {reviews.length > 0 ? (
         <ul>
           {reviews.map((review) => (
             <ReviewsItem key={review.id}>
@@ -47,10 +45,11 @@ return (
           ))}
         </ul>
       ) : (
-        <p>Sorry! No reviews available</p>
+        <NoReviews>Sorry! No reviews available!</NoReviews>
       )}
     </>
   );
 };
 
 
+export default Reviews;

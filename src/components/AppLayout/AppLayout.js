@@ -1,6 +1,7 @@
 import {  Outlet } from "react-router-dom";
 import { ContainerHeader, HeaderItem, HeasderList, PageNav, StyledNavLink } from "./AppLayout.styled";
 import { Suspense } from "react";
+import { Loader } from "components/Loader";
 
 export const AppLayout = () => {
 
@@ -21,7 +22,7 @@ export const AppLayout = () => {
   
         <>
      
-        < Suspense fallback={<div>LOADING PAGE...</div>}>
+        < Suspense fallback={<Loader/>}>
           <Outlet />
           </Suspense>
         </>

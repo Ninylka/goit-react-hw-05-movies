@@ -25,3 +25,9 @@ padding-left: 12px;
 padding-right: 12px;
 margin-bottom: 12px;
 `
+export const NoReviews = styled.p`
+font-family: 'roboto';
+font-weight: 600;
+font-size: 20px;
+padding-left: 12px;
+`

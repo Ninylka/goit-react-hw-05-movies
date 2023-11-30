@@ -7,17 +7,18 @@ import { CharacterCast, ImgCastItem, ListCast, NameCast, NoActorsText, SpanChara
 
 
 
-export const Cast = () => {
-  const { movieId } = useParams();
+ const Cast = () => {
+  
   const [castMovie, setCastMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { movieId } = useParams();
 
   useEffect(() => {
-  if (!movieId) return;
-
+  
+    setIsLoading(true);
   async function getCast() {
       try {
-          setIsLoading(true);
+          
           const newCredits = await getMovieCredits(movieId);
           setCastMovie(newCredits);
       } catch (error) {
@@ -29,6 +30,7 @@ export const Cast = () => {
 
   getCast();
   }, [movieId]);
+
   const ImgBaseURL = "https://image.tmdb.org/t/p/w500";
   const defaultImg = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
@@ -50,4 +52,5 @@ export const Cast = () => {
 
       </div>
   )
-}
+} 
+export default Cast;

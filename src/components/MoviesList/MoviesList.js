@@ -1,7 +1,9 @@
+import { useLocation } from "react-router-dom";
 import { ContainerMoviesList, LinkMoviesListItem, MoviesListItem } from "./MovieList.styled";
 
 
-export const MoviesList =  ({movies, location}) => {
+export const MoviesList =  ({movies}) => {
+  const location = useLocation()
   return (
     <ContainerMoviesList>
     <ul>
@@ -16,9 +18,6 @@ export const MoviesList =  ({movies, location}) => {
         </MoviesListItem>
       ))}
       </ul>
-
-
-
     </ContainerMoviesList>
   );
 };

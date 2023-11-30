@@ -1,6 +1,6 @@
 import { AdditionalItem, LinkAdditionalItem, TitleAdditional } from "./AdditionalInformation.jstyled";
 
-export const AdditionalInformation = (location) => {
+export const AdditionalInformation = () => {
     return (
         <>
         <TitleAdditional>Additional information</TitleAdditional>
