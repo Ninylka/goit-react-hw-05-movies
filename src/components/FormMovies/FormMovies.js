@@ -7,15 +7,9 @@ export const FormMovies =({ onSubmit }) => {
 
     const [query, setQuery] = useState('');
  
-    
-
     const handleChange =(e) => {
       setQuery(e.target.value);
-    
-     
     }
-
-   
 
       const handleSubmit = (e) => {
         e.preventDefault()

@@ -1,35 +1,53 @@
 import { useEffect, useState } from "react";
-import { CastList } from "./CastList";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { getMovieCredits } from "api";
+import { Loader } from "components/Loader";
+import { CharacterCast, ImgCastItem, ListCast, NameCast, NoActorsText, SpanCharacterCast, StyledCastItem } from "./Cast.styled";
 
 
-export const Cast =  () => {
 
-    const [cast, setCast] = useState(null);
-    const { movieId } = useParams();
-    const [isLoading, setIsLoading] = useState(true);
+export const Cast = () => {
+  const { movieId } = useParams();
+  const [castMovie, setCastMovie] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        if (!movieId) {
-            return;
-          }
-        async function getCast() {
-          try {
-            const newCredits = await getMovieCredits(movieId);
-            setCast(newCredits.cast);
-          } catch (error) {
-            toast.error("Something wrong!");
-          } finally {
-            setIsLoading(false)
-          }
-        }
-        getCast();
-      }, [movieId]);
-    
+  useEffect(() => {
+  if (!movieId) return;
 
-return <CastList cast={cast} isLoading={isLoading}/>
-  
+  async function getCast() {
+      try {
+          setIsLoading(true);
+          const newCredits = await getMovieCredits(movieId);
+          setCastMovie(newCredits);
+      } catch (error) {
+          toast.error('Oops! Something went wrong! Please try reloading this page! 🥹')
+      } finally {
+      setIsLoading(false);
+      }
+  }
+
+  getCast();
+  }, [movieId]);
+  const ImgBaseURL = "https://image.tmdb.org/t/p/w500";
+  const defaultImg = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
+
+  return (
+      <div>
+          {isLoading && <Loader/>}
+          
+        <ListCast>
+          {castMovie.length > 0 ? 
+          (castMovie.map(({ profile_path, name, character, id }) => (
+                  <StyledCastItem key={id}>
+                      <ImgCastItem src={profile_path ? `${ImgBaseURL}/${profile_path}` : defaultImg } alt={name} width={250} height={375}
+                      />
+                      <NameCast>{name}</NameCast>
+                      <CharacterCast><SpanCharacterCast>Character: </SpanCharacterCast> {character}</CharacterCast>
+                  </StyledCastItem>
+          ))) : (<NoActorsText>We don't have any information about the actors.</NoActorsText>)}
+       </ListCast>
+
+      </div>
+  )
 }
-

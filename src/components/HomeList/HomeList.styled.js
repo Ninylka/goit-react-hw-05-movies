@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+
 export const ContainerHomeList = styled.div`
 padding: 12px 24px;
 `
